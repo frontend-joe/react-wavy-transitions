@@ -1,46 +1,96 @@
-# Getting Started with Create React App
+# react-wavy-transitions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Show wavy transitions between route changes, in your next React app.
 
-## Available Scripts
+Click [here for a demo](https://www.instagram.com/reel/CR11vT8onxV/) from my [Instagram page](https://instagram.com/frontendjoe)!
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Just a few quick steps to get started:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### 1. Create a React app
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+npx create-react-app my-wavy-app
+```
 
-### `npm test`
+#### 2. Install dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Our project depends upon React's router library
 
-### `npm run build`
+```sh
+npm i react-wavy-transitions react-router-dom
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 3. Modify App.js
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The package relies on two components being present.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##### WavyContainer
 
-### `npm run eject`
+This is what houses our wave transition between route changes and does not require any props.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+##### WavyLink
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This button can be declared anywhere inside your Router component.
+It takes the following props:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+| Prop      | Description                                                                                                             | Example         | type               | required |
+| --------- | ----------------------------------------------------------------------------------------------------------------------- | --------------- | ------------------ | -------- |
+| children  | The content inside the link                                                                                             | About           | String / Component | true     |
+| className | Apply a custom css class to the component. Also, useful if you're styling with styled-components (e.g. styled(WavyLink) | my-custom-class | String             | false    |
+| disabled  | Handle the link's disabled conditional state via this prop                                                              | true            | Boolean            | false    |
+| to        | The route that the link will take you to, always prefixed with a /                                                      | /about          | String             | true     |
+| waveColor | The background color of the wave shapes. Must be a hexcode or rgba value                                                | #8e44fd         | String             | false    |
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+##### Example App.js
 
-## Learn More
+Copy this whole file in to see a basic example:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+import { WavyContainer, WavyLink } from "react-wavy-transitions";
+
+const Home = () => <div>Home</div>;
+const About = () => <div>About</div>;
+const Contact = () => <div>Contact</div>;
+
+const App = () => {
+  return (
+    <>
+      <WavyContainer />
+      <Router>
+        <nav>
+          <WavyLink to="/home" waveColor="#8f44fd">
+            Home
+          </WavyLink>
+          <WavyLink to="/about" waveColor="#089a9a">
+            About
+          </WavyLink>
+          <WavyLink to="/contact" waveColor="#f14964">
+            Contact
+          </WavyLink>
+        </nav>
+        <Switch>
+          <Route path="/about" exact component={About} />
+          <Route path="/contact" exact component={Contact} />
+          <Route path="/home" exact component={Home} />
+          <Redirect to="/home" />
+        </Switch>
+      </Router>
+    </>
+  );
+};
+
+export default App;
+```
+
+### 4. Have fun with it!
+
+Please hit me up on [My Instagram page](https://instagram.com/frontendjoe) for any support or suggestions 🙂
