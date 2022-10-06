@@ -23,7 +23,7 @@ export const WavyLink: FC<WavyLinkProps> = ({ to, children }) => {
       // do the route change
       setTimeout(() => {
         navigate(to);
-      }, 500); // duration will be the same as total wave transition
+      }, 750); // duration will be the same as total wave transition
     }
   };
 

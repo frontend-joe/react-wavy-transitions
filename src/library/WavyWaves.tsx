@@ -16,7 +16,7 @@ const options = {
       enabled: true,
       speed: 1,
       dynamicAnimation: {
-        speed: 500,
+        speed: 750,
       },
       animateGradually: {
         enabled: true,
@@ -64,8 +64,8 @@ const options = {
     },
   },
   yaxis: {
-    max: 100,
-    min: 99,
+    max: 3,
+    min: 0,
     labels: {
       show: false,
     },
@@ -79,19 +79,15 @@ const options = {
 };
 
 export const WavyWaves = () => {
-  const [seriesA, setSeriesA] = useState<number[]>([
-    99, 100, 99, 100, 99, 100, 99, 100,
-  ]);
-  const [seriesB, setSeriesB] = useState<number[]>([
-    99, 100, 99, 100, 99, 100, 99, 100,
-  ]);
+  const [seriesA, setSeriesA] = useState<number[]>([3, 1, 2, 1, 3]);
+  const [seriesB, setSeriesB] = useState<number[]>([1, 3, 2, 3, 2]);
 
   useEffect(() => {
-    setSeriesB([100, 100, 100, 100, 100, 100, 100, 100]);
+    setSeriesB([3, 3, 3, 3, 3]);
 
     setTimeout(() => {
-      setSeriesA([99, 99, 99, 99, 99, 99, 99, 99]);
-    }, 500);
+      setSeriesA([0, 0, 0, 0, 0]);
+    }, 750);
 
     setTimeout(() => {
       const wavyContainer = document.getElementById(
@@ -99,7 +95,7 @@ export const WavyWaves = () => {
       )!;
 
       ReactDOM.unmountComponentAtNode(wavyContainer);
-    }, 1000);
+    }, 1500);
   }, []);
 
   return (

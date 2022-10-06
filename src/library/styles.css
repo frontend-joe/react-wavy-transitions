@@ -13,7 +13,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  animation: move-down 1s infinite linear;
+  animation: move-down 1.5s infinite ease-in-out;
 }
 
 .react-wavy-transitions__top,
