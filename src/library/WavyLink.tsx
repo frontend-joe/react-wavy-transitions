@@ -9,19 +9,22 @@ export const WavyLink: FC<WavyLinkProps> = ({ to, children }) => {
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement> | undefined) => {
     e?.preventDefault();
-    // change the url in address bar
-    window.history.pushState("object or string", "Title", to);
 
-    // show the waves
-    ReactDOM.render(
-      <WavyWaves />,
-      document.getElementById("react-wavy-transitions__container")
-    );
+    if (!document.getElementById("react-wavy-transitions__waves")) {
+      // change the url in address bar
+      window.history.pushState("object or string", "Title", to);
 
-    // do the route change
-    setTimeout(() => {
-      navigate(to);
-    }, 800); // duration will be the same as total wave transition
+      // show the waves
+      ReactDOM.render(
+        <WavyWaves />,
+        document.getElementById("react-wavy-transitions__container")
+      );
+
+      // do the route change
+      setTimeout(() => {
+        navigate(to);
+      }, 500); // duration will be the same as total wave transition
+    }
   };
 
   return (

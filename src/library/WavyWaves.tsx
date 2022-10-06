@@ -12,6 +12,21 @@ const options = {
     zoom: {
       enabled: false,
     },
+    animations: {
+      enabled: true,
+      speed: 1,
+      dynamicAnimation: {
+        speed: 500,
+      },
+      animateGradually: {
+        enabled: true,
+        delay: 0,
+      },
+    },
+  },
+  fill: {
+    opacity: 1,
+    type: "solid",
   },
   grid: {
     show: false,
@@ -50,6 +65,7 @@ const options = {
   },
   yaxis: {
     max: 100,
+    min: 99,
     labels: {
       show: false,
     },
@@ -63,22 +79,27 @@ const options = {
 };
 
 export const WavyWaves = () => {
-  const [series, setSeries] = useState<number[]>([
-    100, 100, 100, 100, 100, 100, 100, 100,
+  const [seriesA, setSeriesA] = useState<number[]>([
+    99, 100, 99, 100, 99, 100, 99, 100,
+  ]);
+  const [seriesB, setSeriesB] = useState<number[]>([
+    99, 100, 99, 100, 99, 100, 99, 100,
   ]);
 
   useEffect(() => {
-    setTimeout(() => {
-      const wavyWaves = document.getElementById(
-        "react-wavy-transitions__waves"
-      );
+    setSeriesB([100, 100, 100, 100, 100, 100, 100, 100]);
 
+    setTimeout(() => {
+      setSeriesA([99, 99, 99, 99, 99, 99, 99, 99]);
+    }, 500);
+
+    setTimeout(() => {
       const wavyContainer = document.getElementById(
         "react-wavy-transitions__container"
       )!;
 
       ReactDOM.unmountComponentAtNode(wavyContainer);
-    }, 800);
+    }, 1000);
   }, []);
 
   return (
@@ -86,18 +107,34 @@ export const WavyWaves = () => {
       id="react-wavy-transitions__waves"
       className="react-wavy-transitions__waves"
     >
-      <Chart
-        options={options}
-        series={[
-          {
-            name: "series-1",
-            data: series,
-          },
-        ]}
-        type="area"
-        width="100%"
-        height="100%"
-      />
+      <div className="react-wavy-transitions__top">
+        <Chart
+          options={options}
+          series={[
+            {
+              name: "series-1",
+              data: seriesA,
+            },
+          ]}
+          type="area"
+          width="100%"
+          height="100%"
+        />
+      </div>
+      <div className="react-wavy-transitions__bottom">
+        <Chart
+          options={options}
+          series={[
+            {
+              name: "series-1",
+              data: seriesB,
+            },
+          ]}
+          type="area"
+          width="100%"
+          height="100%"
+        />
+      </div>
     </div>
   );
 };
