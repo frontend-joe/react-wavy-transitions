@@ -1,101 +1,21 @@
-import { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import { FC, useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import "./styles.css";
+import { getOptions } from "./options";
 
-const options = {
-  chart: {
-    id: "basic-bar",
-    toolbar: {
-      show: false,
-    },
-    zoom: {
-      enabled: false,
-    },
-    animations: {
-      enabled: true,
-      speed: 1,
-      dynamicAnimation: {
-        speed: 750,
-      },
-      animateGradually: {
-        enabled: true,
-        delay: 0,
-      },
-    },
-  },
-  fill: {
-    opacity: 1,
-    type: "solid",
-  },
-  grid: {
-    show: false,
-    padding: {
-      top: -30,
-      left: -10,
-      bottom: -16,
-      right: 0,
-    },
-  },
-  tooltip: {
-    enabled: false,
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    show: false,
-  },
-  xaxis: {
-    labels: {
-      show: false,
-    },
-    dataLabels: {
-      show: false,
-    },
-    markers: {
-      enabled: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-    axisBorder: {
-      show: false,
-    },
-  },
-  yaxis: {
-    max: 3,
-    min: 0,
-    labels: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-    axisBorder: {
-      show: false,
-    },
-  },
+type Props = {
+  color?: string;
 };
 
-export const WavyWaves = () => {
+export const WavyWaves: FC<Props> = ({ color }) => {
   const [seriesA, setSeriesA] = useState<number[]>([3, 1, 2, 1, 3]);
   const [seriesB, setSeriesB] = useState<number[]>([1, 3, 2, 3, 2]);
 
+  const options = getOptions(color!);
+
   useEffect(() => {
     setSeriesB([3, 3, 3, 3, 3]);
-
-    setTimeout(() => {
-      setSeriesA([0, 0, 0, 0, 0]);
-    }, 750);
-
-    setTimeout(() => {
-      const wavyContainer = document.getElementById(
-        "react-wavy-transitions__container"
-      )!;
-
-      ReactDOM.unmountComponentAtNode(wavyContainer);
-    }, 1500);
+    setTimeout(() => setSeriesA([0, 0, 0, 0, 0]), 750); // half total animation
   }, []);
 
   return (

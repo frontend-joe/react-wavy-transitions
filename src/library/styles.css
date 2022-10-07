@@ -16,6 +16,15 @@ body {
   animation: move-down 1.5s infinite ease-in-out;
 }
 
+.react-wavy-transitions__wavy-link {
+  background: transparent;
+  border: 0;
+  color: #f9f9f9;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 .react-wavy-transitions__top,
 .react-wavy-transitions__bottom {
   flex: 1 1 50%;

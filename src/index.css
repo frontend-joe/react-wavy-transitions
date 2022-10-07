@@ -22,22 +22,6 @@ main {
   padding: 20px;
 }
 
-a {
-  text-decoration: none;
-}
-a:link {
-  color: #f9f9f9;
-}
-a:visited {
-  color: #f9f9f9;
-}
-a:hover {
-  color: #f9f9f9;
-}
-a:active {
-  color: #f9f9f9;
-}
-
 ul {
   display: grid;
   gap: 10px;

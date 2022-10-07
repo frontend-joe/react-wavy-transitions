@@ -1,38 +1,42 @@
 import { FC, MouseEvent } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { useNavigate } from "react-router-dom";
 import { WavyLinkProps } from ".";
 import { WavyWaves } from "./WavyWaves";
 
-export const WavyLink: FC<WavyLinkProps> = ({ to, children }) => {
+export const WavyLink: FC<WavyLinkProps> = ({ to, children, color }) => {
   const navigate = useNavigate();
 
-  const handleClick = (e: MouseEvent<HTMLAnchorElement> | undefined) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement> | undefined) => {
     e?.preventDefault();
 
     if (!document.getElementById("react-wavy-transitions__waves")) {
       // change the url in address bar
-      window.history.pushState("object or string", "Title", to);
+      window.history.pushState("", "", to);
 
-      // show the waves
-      ReactDOM.render(
-        <WavyWaves />,
-        document.getElementById("react-wavy-transitions__container")
+      // get access to wave container
+      const waves = createRoot(
+        document.getElementById("react-wavy-transitions__container")!
       );
 
+      // show the waves
+      waves.render(<WavyWaves color={color} />);
+
       // do the route change
-      setTimeout(() => {
-        navigate(to);
-      }, 750); // duration will be the same as total wave transition
+      setTimeout(() => navigate(to), 750); // half total animation
+
+      // hide the waves
+      setTimeout(() => waves.unmount(), 1500); // total animation
     }
   };
 
   return (
-    <a
-      href={"#"}
-      onClick={(e: MouseEvent<HTMLAnchorElement> | undefined) => handleClick(e)}
+    <button
+      type="button"
+      className="react-wavy-transitions__wavy-link"
+      onClick={(e: MouseEvent<HTMLButtonElement> | undefined) => handleClick(e)}
     >
       {children}
-    </a>
+    </button>
   );
 };
