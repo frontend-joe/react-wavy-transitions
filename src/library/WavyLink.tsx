@@ -34,7 +34,7 @@ export const WavyLink: FC<WavyLinkProps> = ({ to, children, color }) => {
     <button
       type="button"
       className="react-wavy-transitions__wavy-link"
-      onClick={(e: MouseEvent<HTMLButtonElement> | undefined) => handleClick(e)}
+      onClick={handleClick}
     >
       {children}
     </button>

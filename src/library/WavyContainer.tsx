@@ -1,3 +1,3 @@
 export const WavyContainer = () => (
-  <div id="react-wavy-transitions__container"></div>
+  <div id="react-wavy-transitions__container" />
 );
