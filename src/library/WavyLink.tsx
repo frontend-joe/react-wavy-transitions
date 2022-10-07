@@ -15,18 +15,18 @@ export const WavyLink: FC<WavyLinkProps> = ({ to, children, color }) => {
       window.history.pushState("", "", to);
 
       // get access to wave container
-      const waves = createRoot(
+      const container = createRoot(
         document.getElementById("react-wavy-transitions__container")!
       );
 
       // show the waves
-      waves.render(<WavyWaves color={color} />);
+      container.render(<WavyWaves color={color} />);
 
       // do the route change
       setTimeout(() => navigate(to), 750); // half total animation
 
       // hide the waves
-      setTimeout(() => waves.unmount(), 1500); // total animation
+      setTimeout(() => container.unmount(), 1500); // total animation
     }
   };
 
