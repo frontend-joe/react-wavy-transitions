@@ -24,7 +24,7 @@ export const WavyWaves: FC<Props> = ({ color }) => {
       className="react-wavy-transitions__waves"
     >
       <div className="react-wavy-transitions__top">
-        {/* <Chart
+        <Chart
           options={options}
           series={[
             {
@@ -35,10 +35,10 @@ export const WavyWaves: FC<Props> = ({ color }) => {
           type="area"
           width="100%"
           height="100%"
-        /> */}
+        />
       </div>
       <div className="react-wavy-transitions__bottom">
-        {/* <Chart
+        <Chart
           options={options}
           series={[
             {
@@ -49,7 +49,7 @@ export const WavyWaves: FC<Props> = ({ color }) => {
           type="area"
           width="100%"
           height="100%"
-        /> */}
+        />
       </div>
     </div>
   );
