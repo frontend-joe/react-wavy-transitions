@@ -8,7 +8,7 @@ import Contact from "./routes/Contact";
 import { Nav } from "./layout/Nav";
 import { Main } from "./layout/Main";
 
-import { WavyContainer } from "./library";
+import { WavyContainer } from "./library/waves";
 
 function App() {
   return (

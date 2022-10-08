@@ -1,8 +1,13 @@
-import { FC, MouseEvent } from "react";
+import { FC, MouseEvent, ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { useNavigate } from "react-router-dom";
-import { WavyLinkProps } from ".";
 import { WavyWaves } from "./WavyWaves";
+
+export type WavyLinkProps = {
+  to: string;
+  children: ReactNode;
+  color?: string;
+};
 
 export const WavyLink: FC<WavyLinkProps> = ({ to, children, color }) => {
   const navigate = useNavigate();
