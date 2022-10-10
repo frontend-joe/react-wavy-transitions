@@ -7,6 +7,12 @@ export type WavyLinkProps = {
   to: string;
   children: ReactNode;
   color?: string;
+  direction?:
+    | string
+    | "top-bottom"
+    | "bottom-top"
+    | "top-top"
+    | "bottom-bottom";
 };
 
 export const WavyLink: FC<WavyLinkProps> = ({ to, children, color }) => {
