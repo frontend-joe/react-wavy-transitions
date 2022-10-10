@@ -19,10 +19,7 @@ export const WavyWaves: FC<Props> = ({ color }) => {
   }, []);
 
   return (
-    <div
-      id="react-wavy-transitions__waves"
-      className="react-wavy-transitions__waves"
-    >
+    <div id="react-wavy-transitions__waves">
       <div className="react-wavy-transitions__top">
         <Chart
           options={options}
