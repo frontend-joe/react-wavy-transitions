@@ -15,7 +15,10 @@ export const WavyLink: FC<WavyLinkProps> = ({ to, children, color }) => {
   const handleClick = (e: MouseEvent<HTMLButtonElement> | undefined) => {
     e?.preventDefault();
 
-    if (!document.getElementById("react-wavy-transitions__waves")) {
+    if (
+      !document.getElementById("react-wavy-transitions__waves") &&
+      window.location.pathname !== to
+    ) {
       // change the url in address bar
       window.history.pushState("", "", to);
 
