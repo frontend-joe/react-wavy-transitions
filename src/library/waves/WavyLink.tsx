@@ -7,15 +7,17 @@ export type WavyLinkProps = {
   to: string;
   children: ReactNode;
   color?: string;
-  direction?:
-    | string
-    | "top-bottom"
-    | "bottom-top"
-    | "top-top"
-    | "bottom-bottom";
+  direction?: string | "up" | "down";
+  duration?: number;
 };
 
-export const WavyLink: FC<WavyLinkProps> = ({ to, children, color }) => {
+export const WavyLink: FC<WavyLinkProps> = ({
+  to,
+  children,
+  color = "#8f44fd",
+  direction = "down",
+  duration = 1500,
+}) => {
   const navigate = useNavigate();
 
   const handleClick = (e: MouseEvent<HTMLButtonElement> | undefined) => {
@@ -34,13 +36,15 @@ export const WavyLink: FC<WavyLinkProps> = ({ to, children, color }) => {
       );
 
       // show the waves
-      container.render(<WavyWaves color={color} />);
+      container.render(
+        <WavyWaves color={color} direction={direction} duration={duration} />
+      );
 
       // do the route change
-      setTimeout(() => navigate(to), 750); // half total animation
+      setTimeout(() => navigate(to), duration / 2); // half total animation
 
       // hide the waves
-      setTimeout(() => container.unmount(), 1500); // total animation
+      setTimeout(() => container.unmount(), duration); // total animation
     }
   };
 

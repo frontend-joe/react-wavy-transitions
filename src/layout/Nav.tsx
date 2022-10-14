@@ -6,11 +6,11 @@ export const Nav = () => (
       Home
     </WavyLink>
 
-    <WavyLink to="/about" color="#8f44fd">
+    <WavyLink direction="up" to="/about" color="#8f44fd">
       About
     </WavyLink>
 
-    <WavyLink to="/contact" color="#2f44fd">
+    <WavyLink duration={1000} to="/contact" color="#2f44fd">
       Contact
     </WavyLink>
   </nav>
