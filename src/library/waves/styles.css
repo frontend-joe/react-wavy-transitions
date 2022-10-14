@@ -2,8 +2,8 @@ body {
   margin: 0;
 }
 
-.react-wavy-transitions__top,
-.react-wavy-transitions__bottom {
+.react-wavy-transitions__first,
+.react-wavy-transitions__second {
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -11,32 +11,60 @@ body {
   width: 100%;
   min-width: 800px;
   height: 100%;
+  animation-timing-function: ease-in-out;
 }
 
-.react-wavy-transitions__top {
+/* direction down */
+.down.react-wavy-transitions__first {
   top: 2px;
   translate: 0 -200%;
-  animation: top-move 1.5s infinite ease-in-out;
+  animation-name: down-first-move;
 }
 
-.react-wavy-transitions__bottom {
+.down.react-wavy-transitions__second {
   rotate: 180deg;
   translate: 0 -100%;
-  animation: bottom-move 1.5s infinite ease-in-out;
+  animation-name: down-second-move;
 }
 
-@keyframes top-move {
+@keyframes down-first-move {
   100% {
     translate: 0 0;
   }
 }
 
-@keyframes bottom-move {
+@keyframes down-second-move {
   100% {
     translate: 0 100%;
   }
 }
 
+/* direction up */
+.up.react-wavy-transitions__first {
+  rotate: 180deg;
+  translate: 0 200%;
+  animation-name: up-first-move;
+}
+
+.up.react-wavy-transitions__second {
+  top: 2px;
+  translate: 0 100%;
+  animation-name: up-second-move;
+}
+
+@keyframes up-first-move {
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes up-second-move {
+  100% {
+    translate: 0 -100%;
+  }
+}
+
+/* Wavy Link */
 .react-wavy-transitions__wavy-link {
   background: transparent;
   border: 0;

@@ -74,7 +74,7 @@ const options = {
   },
 };
 
-export const getOptions = (color: string = "#8f44fd") => {
+export const getOptions = (color: string = "#8f44fd", duration: number) => {
   if (color) {
     options.fill = {
       opacity: 1,
@@ -82,6 +82,8 @@ export const getOptions = (color: string = "#8f44fd") => {
       colors: [color],
     };
   }
+
+  options.chart.animations.dynamicAnimation.speed = duration / 2;
 
   return options;
 };

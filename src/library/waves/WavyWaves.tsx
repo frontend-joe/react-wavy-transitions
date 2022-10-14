@@ -4,23 +4,28 @@ import "./styles.css";
 import { getOptions } from "./options";
 
 type Props = {
-  color?: string;
+  color: string;
+  direction: string;
+  duration: number;
 };
 
-export const WavyWaves: FC<Props> = ({ color }) => {
+export const WavyWaves: FC<Props> = ({ color, direction, duration }) => {
   const [seriesA, setSeriesA] = useState<number[]>([3, 1, 2, 1, 3]);
   const [seriesB, setSeriesB] = useState<number[]>([1, 3, 2, 3, 2]);
 
-  const options = getOptions(color!);
+  const options = getOptions(color, duration);
 
   useEffect(() => {
     setSeriesB([3, 3, 3, 3, 3]);
-    setTimeout(() => setSeriesA([0, 0, 0, 0, 0]), 750); // half total animation
+    setTimeout(() => setSeriesA([0, 0, 0, 0, 0]), duration / 2); // half total animation
   }, []);
 
   return (
     <div id="react-wavy-transitions__waves">
-      <div className="react-wavy-transitions__top">
+      <div
+        style={{ animationDuration: `${duration}ms` }}
+        className={`${direction} react-wavy-transitions__first`}
+      >
         <Chart
           options={options}
           series={[
@@ -34,7 +39,10 @@ export const WavyWaves: FC<Props> = ({ color }) => {
           height="100%"
         />
       </div>
-      <div className="react-wavy-transitions__bottom">
+      <div
+        style={{ animationDuration: `${duration}ms` }}
+        className={`${direction} react-wavy-transitions__second`}
+      >
         <Chart
           options={options}
           series={[
