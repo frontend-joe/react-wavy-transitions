@@ -18,7 +18,7 @@ export const WavyWaves: FC<Props> = ({ color, direction, duration }) => {
   useEffect(() => {
     setSeriesB([3, 3, 3, 3, 3]);
     setTimeout(() => setSeriesA([0, 0, 0, 0, 0]), duration / 2); // half total animation
-  }, []);
+  }, [duration]);
 
   return (
     <div id="react-wavy-transitions__waves">
