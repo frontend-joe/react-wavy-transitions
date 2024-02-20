@@ -9,6 +9,8 @@ export type WavyLinkProps = {
   color?: string;
   direction?: string | "up" | "down";
   duration?: number;
+  seriesDataA?: number[];
+  seriesDataB?: number[];
 };
 
 export const WavyLink: FC<WavyLinkProps> = ({
@@ -16,7 +18,9 @@ export const WavyLink: FC<WavyLinkProps> = ({
   children,
   color = "#8f44fd",
   direction = "down",
-  duration = 1500,
+  duration = 2000,
+  seriesDataA = [3, 1, 2, 1, 3],
+  seriesDataB = [1, 3, 2, 3, 2]
 }) => {
   const navigate = useNavigate();
 
@@ -37,7 +41,9 @@ export const WavyLink: FC<WavyLinkProps> = ({
 
       // show the waves
       container.render(
-        <WavyWaves color={color} direction={direction} duration={duration} />
+        <WavyWaves color={color} direction={direction} duration={duration}
+        seriesDataA={seriesDataA}
+        seriesDataB={seriesDataB}/>
       );
 
       // do the route change

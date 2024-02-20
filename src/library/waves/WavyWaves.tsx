@@ -7,18 +7,26 @@ type Props = {
   color: string;
   direction: string;
   duration: number;
+  seriesDataA: number[]; 
+  seriesDataB: number[]; 
 };
 
-export const WavyWaves: FC<Props> = ({ color, direction, duration }) => {
-  const [seriesA, setSeriesA] = useState<number[]>([3, 1, 2, 1, 3]);
-  const [seriesB, setSeriesB] = useState<number[]>([1, 3, 2, 3, 2]);
+export const WavyWaves: FC<Props> = ({
+  color,
+  direction,
+  duration,
+  seriesDataA,
+  seriesDataB,
+}) => {
+  const [seriesA, setSeriesA] = useState<number[]>(seriesDataA);
+  const [seriesB, setSeriesB] = useState<number[]>(seriesDataB);
 
   const options = getOptions(color, duration);
 
   useEffect(() => {
-    setSeriesB([3, 3, 3, 3, 3]);
-    setTimeout(() => setSeriesA([0, 0, 0, 0, 0]), duration / 2); // half total animation
-  }, [duration]);
+    setSeriesB(new Array(seriesDataA.length).fill(3)); // Fill seriesB with 3's
+    setTimeout(() => setSeriesA(new Array(seriesDataA.length).fill(0)), duration / 2); // half total animation
+  }, [duration, seriesDataA.length]);
 
   return (
     <div id="react-wavy-transitions__waves">
@@ -34,7 +42,7 @@ export const WavyWaves: FC<Props> = ({ color, direction, duration }) => {
               data: seriesA,
             },
           ]}
-          type="area"
+          type={"area"}
           width="100%"
           height="100%"
         />
@@ -51,7 +59,7 @@ export const WavyWaves: FC<Props> = ({ color, direction, duration }) => {
               data: seriesB,
             },
           ]}
-          type="area"
+          type={"area"}
           width="100%"
           height="100%"
         />
